@@ -1,0 +1,381 @@
+/* Global Reset and Base Styling */
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+button {
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Wrapper Styling */
+.wrapper {
+  width: 90%;
+  max-width: 800px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Header Styling */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #4caf50;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eaeaea;
+  width: 100%;
+}
+
+/* Hero Section Styling */
+.todohero_section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 700px;
+  padding: 24px;
+  margin: 24px auto;
+  background-color: #e8f5e9;
+  border: 1px solid #c8e6c9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.hero_message {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero_message .text_large {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #388e3c;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero_message .text_small {
+  font-size: 1.1rem;
+  color: #66bb6a;
+}
+
+.hero_progress {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #388e3c;
+  display: flex;
+  gap: 4px;
+}
+
+/* Form Styling */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align items within the form */
+  width: 100%;
+  max-width: 600px;
+  margin: 24px auto;
+  gap: 12px;
+}
+
+.form label {
+  width: 100%;
+}
+
+.form input {
+  width: 100%;
+  padding: 14px;
+  font-size: 1rem;
+  color: #333;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form input::placeholder {
+  color: #999;
+  opacity: 1;
+}
+
+.form input:focus {
+  border-color: #4caf50;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Centered Submit Button Styling */
+.form .submit-button-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.form button {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.form button:hover {
+  background: linear-gradient(135deg, #66bb6a, #81c784);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.form button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Error Message Styling */
+.error-message {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Todo List Styling */
+.todo_list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+/* Empty Message Styling */
+.empty-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f8e9;
+  border: 1px solid #c5e1a5;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  color: #388e3c;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.empty-message p {
+  font-size: 1.2rem;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+/* Todo Item Styling */
+.todo_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox Styling - Aligns checkbox to the center */
+.mark-complete-checkbox {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.mark-complete-checkbox input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #4caf50;
+}
+
+/* Task Text Styling - Allows multi-line text wrapping */
+.task-text {
+  flex: 1;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  line-height: 1.4;
+  max-height: 4.2em; /* Approximately 3 lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  margin-right: 10px;
+}
+
+/* Right-side Controls for Edit and Delete Buttons */
+.todo_items_right {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.todo_items_right button {
+  background-color: #f4f4f4;
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+  color: #888;
+  padding: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.todo_items_right button:hover {
+  background-color: #e0f7fa;
+  color: #333;
+  border-color: #b2ebf2;
+}
+
+.todo_items_right button svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.todo_items_right button:hover svg {
+  transform: scale(1.1);
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 12px;
+  }
+
+  header {
+    font-size: 1.4rem;
+    padding: 12px 0;
+  }
+
+  .todohero_section {
+    padding: 12px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .form {
+    gap: 8px;
+  }
+
+  .form button {
+    width: 45px;
+    height: 45px;
+  }
+
+  .hero_progress {
+    font-size: 1.5rem;
+  }
+
+  .task-text {
+    font-size: 0.95rem;
+  }
+
+  .todo_items_right button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .wrapper {
+    padding: 8px;
+  }
+
+  header {
+    font-size: 1.2rem;
+    padding: 8px 0;
+  }
+
+  .todohero_section {
+    padding: 8px;
+  }
+
+  .form {
+    gap: 6px;
+  }
+
+  .form button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero_progress {
+    font-size: 1.3rem;
+  }
+
+  .task-text {
+    font-size: 0.9rem;
+  }
+
+  .todo_items_right button svg {
+    width: 16px;
+    height: 16px;
+  }
+}

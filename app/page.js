@@ -1,95 +1,46 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import React from "react";
+import dynamic from "next/dynamic";
 
-export default function Home() {
+// Dynamically load Form and TODOList without SSR
+const Form = dynamic(() => import("@/components/Form"), { ssr: false });
+const TODOList = dynamic(() => import("@/components/TODOList"), { ssr: false });
+
+import Header from "@/components/Header";
+import TODOHero from "@/components/TODOHero";
+
+function Home() {
+  const [todos, setTodos] = React.useState([]);
+  const [isClient, setIsClient] = React.useState(false);
+
+  // Confirm client-side rendering
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Load todos from localStorage after confirming client-side rendering
+  React.useEffect(() => {
+    if (isClient) {
+      const storedTodos = localStorage.getItem("todos");
+      if (storedTodos) {
+        setTodos(JSON.parse(storedTodos));
+      }
+    }
+  }, [isClient]);
+
+  if (!isClient) return null; // Prevent SSR mismatch by rendering null initially
+
+  const todos_completed = todos.filter((todo) => todo.is_completed === true).length;
+  const total_todos = todos.length;
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div className="wrapper" suppressHydrationWarning>
+      <Header />
+      <TODOHero todos_completed={todos_completed} total_todos={total_todos} />
+      <Form todos={todos} setTodos={setTodos} />
+      <TODOList todos={todos} setTodos={setTodos} />
     </div>
   );
 }
+
+export default Home;
